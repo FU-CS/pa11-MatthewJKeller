@@ -1,20 +1,38 @@
 package pa11;
 
+import java.util.LinkedList;
+
 public class HashMap {
 
+
+    int size = 0;
+    int capacity = 17;
+    LinkedList<Pair>[] data;
     /**
      *  Constructor for the map
      */
+    
+    @SuppressWarnings("unchecked")
     public HashMap() {
         System.out.println("HashMap");
+        this.data = new LinkedList[this.capacity];
     }
-    
+
+    private int hashingAlgorithm(String s){
+        int xcode = 0;
+        for(int i=0; i<s.length(); i++){
+            int ascii = (int) s.charAt(i);
+            xcode += ascii;
+        }
+        return xcode % this.capacity;
+    }
     /** 
      *  Size of the map
      *  @return the number of elements in the map
      */
     public int size() {
         System.out.println("Size");
+        return this.size;
     }
 
     /**
@@ -23,6 +41,7 @@ public class HashMap {
      */
     public boolean isEmpty() {
         System.out.println("IsEmpty");
+        return this.size == 0;
     }
 
     /**
@@ -32,6 +51,19 @@ public class HashMap {
      */
     public String get(String key) {
         System.out.println("Get " + key);
+
+        int index = this.hashingAlgorithm(key);
+        LinkedList<Pair> curr = this.data[index];
+
+        if (curr == null) {
+            return null;
+        }
+
+        for(int i=0; i<curr.size(); i++){
+            if(curr.get(i).getKey().equals(key)){
+                return curr.get(i).getValue();
+            }
+        }
         return null;
     }
 
@@ -43,6 +75,23 @@ public class HashMap {
      */
     public String put(String key, String value) {
         System.out.println("Put " + key + " " + value);
+
+        int index = this.hashingAlgorithm(key);
+        
+        if (this.data[index] == null) {
+            this.data[index] = new LinkedList<>();
+        }
+
+        for(int i=0; i<this.data[index].size(); i++){
+            if(this.data[index].get(i).getKey().equals(key)){
+                String oldVal = this.data[index].get(i).getValue();
+                this.data[index].get(i).setVal(value);
+                return oldVal;
+            }
+        }
+
+        this.data[index].add(new Pair(key, value));
+        this.size++;
         return null;
     }
 
@@ -53,6 +102,22 @@ public class HashMap {
      */
     public String remove(String key) {
         System.out.println("Remove " + key);
+
+        int index = this.hashingAlgorithm(key);
+        
+        if (this.data[index] == null) {
+            return null;
+        }
+
+        for(int i=0; i<this.data[index].size(); i++){
+            if(this.data[index].get(i).getKey().equals(key)){
+                String oldValue = this.data[index].get(i).getValue();
+                this.data[index].remove(i);
+                this.size--;
+                return oldValue;
+            }
+        }
+
         return null;
     }
 
@@ -62,7 +127,17 @@ public class HashMap {
      */
     public String[] keySet() {
         System.out.println("KeySet");
-        return null;
+        String[] keys = new String[this.size];
+        int curr = 0;
+        for (int i = 0; i < this.capacity; i++) {
+            if (this.data[i] != null) {
+                for(int j=0; j<this.data[i].size(); j++){
+                    keys[curr] = this.data[i].get(j).getKey();
+                    curr++;
+                }
+            }
+        }
+        return keys;
     }
 
     /**
@@ -71,6 +146,16 @@ public class HashMap {
      */
     public String[] values() {
         System.out.println("Values");
-        return null;
+        String[] values = new String[this.size];
+        int curr = 0;
+        for (int i = 0; i < this.capacity; i++) {
+            if (this.data[i] != null) {
+                for (int j = 0; j < this.data[i].size(); j++) {
+                    values[curr] = this.data[i].get(j).getValue();
+                    curr++;
+                }
+            }
+        }
+        return values;
     }
 }

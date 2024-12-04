@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pa11.HashSetTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-04T22:22:03" hostname="LAPTOP-DI0PVVNV" time="0.04">
+  <properties/>
+  <testcase name="testSubset()" classname="pa11.HashSetTest" time="0.04"/>
+  <system-out><![CDATA[HashSet
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding cherry
+Contains cherry
+Contains apple
+Contains banana
+Contains apple
+Contains cherry
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -3,13 +3,149 @@
  */
 package pa11;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class HashSetTest {
+public class HashSetTest {
 
-    @Test void EmptySet() {
-        HashSet set = new HashSet();
-        assertEquals(set.size(), 0);
+    private HashSet set;
+
+    @BeforeEach
+    void setUp() {
+        set = new HashSet();
+    }
+
+    @Test
+    void testConstructor() {
+        assertNotNull(set);
+        assertTrue(set.isEmpty());
+        assertEquals(0, set.size());
+    }
+
+    @Test
+    void testAdd() {
+        set.add("apple");
+        assertEquals(1, set.size());
+        assertTrue(set.contains("apple"));
+
+        set.add("banana");
+        assertEquals(2, set.size());
+        assertTrue(set.contains("banana"));
+
+        set.add("apple");
+        assertEquals(2, set.size());
+    }
+
+    @Test
+    void testRemove() {
+        set.add("apple");
+        set.add("banana");
+        set.remove("apple");
+
+        assertFalse(set.contains("apple"));
+        assertEquals(1, set.size());
+
+        set.remove("grape");
+        assertEquals(1, set.size());
+    }
+
+    @Test
+    void testIsEmpty() {
+        assertTrue(set.isEmpty());
+        set.add("apple");
+        assertFalse(set.isEmpty());
+        set.remove("apple");
+        assertTrue(set.isEmpty());
+    }
+
+    @Test
+    void testContains() {
+        set.add("apple");
+        assertTrue(set.contains("apple"));
+        assertFalse(set.contains("banana"));
+    }
+
+    @Test
+    void testClear() {
+        set.add("apple");
+        set.add("banana");
+        set.clear();
+        assertTrue(set.isEmpty());
+        assertEquals(0, set.size());
+    }
+
+    @Test
+    void testToArray() {
+        set.add("apple");
+        set.add("banana");
+        String[] array = set.toArray();
+        assertEquals(2, array.length);
+        assertTrue(array[0].equals("apple") || array[0].equals("banana"));
+        assertTrue(array[1].equals("apple") || array[1].equals("banana"));
+    }
+
+    @Test
+    void testIntersection() {
+        HashSet otherSet = new HashSet();
+        set.add("apple");
+        set.add("banana");
+        otherSet.add("banana");
+        otherSet.add("cherry");
+
+        HashSet result = set.intersection(otherSet);
+
+        assertTrue(result.contains("banana"));
+        assertFalse(result.contains("apple"));
+        assertFalse(result.contains("cherry"));
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void testUnion() {
+        HashSet otherSet = new HashSet();
+        set.add("apple");
+        set.add("banana");
+        otherSet.add("banana");
+        otherSet.add("cherry");
+
+        HashSet result = set.union(otherSet);
+
+        assertTrue(result.contains("apple"));
+        assertTrue(result.contains("banana"));
+        assertTrue(result.contains("cherry"));
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    void testDifference() {
+        HashSet otherSet = new HashSet();
+        set.add("apple");
+        set.add("banana");
+        otherSet.add("banana");
+        otherSet.add("cherry");
+
+        HashSet result = set.difference(otherSet);
+
+        assertTrue(result.contains("apple"));
+        assertFalse(result.contains("banana"));
+        assertFalse(result.contains("cherry"));
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void testSubset() {
+        HashSet otherSet = new HashSet();
+        set.add("apple");
+        set.add("banana");
+        otherSet.add("apple");
+        otherSet.add("banana");
+        otherSet.add("cherry");
+
+        assertTrue(set.subset(otherSet));
+        assertFalse(otherSet.subset(set));
     }
 }
