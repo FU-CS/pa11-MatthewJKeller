@@ -1,8 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="pa11.HashSetTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-04T22:22:03" hostname="LAPTOP-DI0PVVNV" time="0.04">
+<testsuite name="pa11.HashSetTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2024-12-04T22:25:22" hostname="LAPTOP-DI0PVVNV" time="0.078">
   <properties/>
-  <testcase name="testSubset()" classname="pa11.HashSetTest" time="0.04"/>
+  <testcase name="testToArray()" classname="pa11.HashSetTest" time="0.028"/>
+  <testcase name="testAdd()" classname="pa11.HashSetTest" time="0.002"/>
+  <testcase name="testClear()" classname="pa11.HashSetTest" time="0.001"/>
+  <testcase name="testUnion()" classname="pa11.HashSetTest" time="0.004"/>
+  <testcase name="testContains()" classname="pa11.HashSetTest" time="0.008"/>
+  <testcase name="testDifference()" classname="pa11.HashSetTest" time="0.002"/>
+  <testcase name="testIntersection()" classname="pa11.HashSetTest" time="0.004"/>
+  <testcase name="testIsEmpty()" classname="pa11.HashSetTest" time="0.003"/>
+  <testcase name="testRemove()" classname="pa11.HashSetTest" time="0.003"/>
+  <testcase name="testSubset()" classname="pa11.HashSetTest" time="0.003"/>
+  <testcase name="testConstructor()" classname="pa11.HashSetTest" time="0.006"/>
   <system-out><![CDATA[HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+HashSet
+Adding apple
+Contains apple
+Size
+Contains apple
+Adding banana
+Contains banana
+Size
+Contains banana
+Adding apple
+Contains apple
+Size
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Clear
+Size
+HashSet
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding banana
+Contains banana
+Adding cherry
+Contains cherry
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding cherry
+Contains cherry
+Adding banana
+Contains banana
+Contains apple
+Contains banana
+Contains cherry
+Size
+HashSet
+Adding apple
+Contains apple
+Contains apple
+Contains banana
+HashSet
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding banana
+Contains banana
+Adding cherry
+Contains cherry
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Removing cherry
+Removing banana
+Contains apple
+Contains banana
+Contains cherry
+Size
+HashSet
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Adding banana
+Contains banana
+Adding cherry
+Contains cherry
+HashSet
+Contains apple
+Contains banana
+Adding banana
+Contains banana
+Contains banana
+Contains apple
+Contains cherry
+Size
+HashSet
+Adding apple
+Contains apple
+Removing apple
+HashSet
+Adding apple
+Contains apple
+Adding banana
+Contains banana
+Removing apple
+Contains apple
+Size
+Removing grape
+Size
+HashSet
 HashSet
 Adding apple
 Contains apple
@@ -18,6 +134,8 @@ Contains apple
 Contains banana
 Contains apple
 Contains cherry
+HashSet
+Size
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
